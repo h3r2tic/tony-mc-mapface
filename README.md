@@ -46,7 +46,6 @@ As can be expected, the models underlying this process are imperfect, thus a lib
 <img src="https://user-images.githubusercontent.com/16522064/219527156-cfa9dba0-f4fe-409c-8e60-1fe3f79dbb40.jpg" width="600" height="auto" />
 <img src="https://user-images.githubusercontent.com/16522064/219536385-5e80e563-779b-427e-a315-6a682d709f56.jpg" width="600" height="auto" />
 <img src="https://user-images.githubusercontent.com/16522064/219536271-07fd1e01-3d61-4922-8611-823cd056cb35.jpg" width="600" height="auto" title="EV+1" />
-<img src="https://user-images.githubusercontent.com/16522064/219536733-98f789a9-90db-4ffe-a0f1-b00ef9b15695.jpg" width="600" height="auto" title="EV+1" />
 <img src="https://user-images.githubusercontent.com/16522064/219536784-a0435a94-1d2d-4b37-8629-e6abc8d02894.jpg" width="600" height="auto" />
 
 HDR images from <https://github.com/sobotka/Testing_Imagery>
