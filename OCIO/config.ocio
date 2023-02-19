@@ -1,0 +1,84 @@
+ocio_profile_version: 2
+
+environment:
+  {}
+search_path: LUTs
+strictparsing: true
+luma: [0.2126, 0.7152, 0.0722]
+
+roles:
+  color_picking: sRGB
+  color_timing: sRGB
+  compositing_log: sRGB
+  data: Generic Data
+  default: sRGB
+  default_byte: sRGB
+  default_float: Linear BT.709
+  default_sequencer: sRGB
+  matte_paint: sRGB
+  reference: Linear BT.709
+  scene_linear: Linear BT.709
+  texture_paint: sRGB
+
+file_rules:
+  - !<Rule> {name: Default, colorspace: default}
+
+displays:
+  sRGB:
+    - !<View> {name: Display Native, colorspace: sRGB}
+    - !<View> {name: TonyMcMapface, colorspace: TonyMcMapface Base}
+
+active_displays: []
+active_views: []
+
+colorspaces:
+  - !<ColorSpace>
+    name: Linear BT.709
+    aliases: [Linear, Linear Tristimulus]
+    family: Colourspaces
+    equalitygroup: ""
+    bitdepth: unknown
+    description: Open Domain Linear BT.709 Tristimulus
+    isdata: false
+    allocation: uniform
+
+  - !<ColorSpace>
+    name: sRGB
+    family: Displays/SDR
+    equalitygroup: ""
+    bitdepth: unknown
+    description: sRGB IEC 61966-2-1 2.2 Exponent Reference EOTF Display
+    isdata: false
+    allocation: uniform
+    from_scene_reference: !<FileTransform> {src: sRGB_OETF.spi1d}
+
+  - !<ColorSpace>
+    name: TonyMcMapface Base
+    family: Imagery
+    equalitygroup: ""
+    bitdepth: unknown
+    description: TonyMcMapface Base Image Encoding
+    isdata: false
+    allocation: uniform
+    from_scene_reference: !<GroupTransform>
+      children:
+        # Map to a temporary log space
+        - !<AllocationTransform> {allocation: lg2, vars: [-13.0, 8.0]}
+        # Now undo the log, and apply the x / (1 + x) that the 3D lut actually uses
+        - !<FileTransform> {src: tony_log_to_rational.spi1d}
+        # OCIO seems to use LUTs differently than the shaders, resulting in some numerical inaccuracy,
+        # This transform mostly fixes it
+        - !<MatrixTransform> {matrix: [1.004,0,0,0,  0,1.004,0,0,  0,0,1.004,0,  0,0,0,1], offset: [-0.0002, -0.0002, -0.0002, 0]}
+        - !<FileTransform> {src: tony_mc_mapface.spi3d}
+        # Apply the sRGB OETF
+        - !<ColorSpaceTransform> {src: Linear BT.709, dst: sRGB}
+
+  - !<ColorSpace>
+    name: Generic Data
+    aliases: [Non-Color, Raw]
+    family: Data/Generic Data
+    equalitygroup: ""
+    bitdepth: unknown
+    description: Generic data encoding
+    isdata: true
+    allocation: uniform

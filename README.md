@@ -7,7 +7,7 @@
 
 # 🌈 Tony McMapface 🌈
 
-Takes HDR Rec.709 RGB stimulus, and maps it to LDR. It's tranquil and collected, and won't set your eyes ablaze.
+Takes HDR Rec.709/sRGB stimulus, and maps it to LDR. It's tranquil and collected, and won't set your eyes ablaze.
 
 <img src="https://user-images.githubusercontent.com/16522064/219526571-8e813b0a-c253-4706-b104-27d501ae24ce.jpg" width="600" height="auto" />
 
@@ -19,10 +19,11 @@ Tony is a display transform intended for real-time applications such as games. I
 
 It ships as a LUT along with a bit of shader code for sampling. There's no tweakables; if you need a different look, do it before and/or after the display transform.
 
-Please note that the output is linear, so if "gamma space" sRGB is desired, the sRGB OETF must be used afterwards.
+Please note that the shader output is linear, so if "gamma space" sRGB is desired, the sRGB OETF must be used afterwards.
+
+There's also a basic OCIO config with sRGB output.
 
 _Disclaimer: Tony McMapface is phenomenological, and tuned to its author's visual system (with mixed success). If you need something mathematically pure, try [AgX](https://github.com/sobotka/AgX)._
-
 
 ## Derivation
 
@@ -48,7 +49,7 @@ As can be expected, the models underlying this process are imperfect, thus a lib
 <img src="https://user-images.githubusercontent.com/16522064/219536733-98f789a9-90db-4ffe-a0f1-b00ef9b15695.jpg" width="600" height="auto" title="EV+1" />
 <img src="https://user-images.githubusercontent.com/16522064/219536784-a0435a94-1d2d-4b37-8629-e6abc8d02894.jpg" width="600" height="auto" />
 
-HDR images from https://github.com/sobotka/Testing_Imagery
+HDR images from <https://github.com/sobotka/Testing_Imagery>
 
 </div>
 
