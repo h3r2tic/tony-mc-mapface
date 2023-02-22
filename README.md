@@ -25,6 +25,10 @@ There's also a basic OCIO config with sRGB output.
 
 _Disclaimer: Tony McMapface is phenomenological, and tuned to its author's visual system (with mixed success). If you need something mathematically pure, try [AgX](https://github.com/sobotka/AgX)._
 
+## Ports 💖
+
+* [DaVinci Resolve port](https://github.com/SergeyMakeev/tony-mc-mapface-fuse) by Sergey Makeev
+
 ## Derivation
 
 The generator's source code will come at a later time. Meanwhile, here's a TL;DR:
